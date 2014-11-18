@@ -1,0 +1,23 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>User Login-html</title>
+    <link rel="stylesheet" type="text/css" href="ppstyle.css"/>
+</head>
+<body>
+<div>
+    <p style="color: red" th:text="${error}"/>
+    <form action="#" th:action="@{/}" th:object="${user}" method="post">
+        <label for="email">Email:</label> <input id="email" type="email" th:field="*{email}"/>
+        <br/><br/>
+        <label for="pwd">Password:</label> <input id="pwd" type="password" th:field="*{pwd}"/>
+        <br/><br/>
+        <input type="submit"/>
+    </form>
+
+</div>
+</body>
+</html>

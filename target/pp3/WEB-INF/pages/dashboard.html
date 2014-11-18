@@ -1,0 +1,32 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Dashboard</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <script>
+    function startTx() {
+      document.getElementById("txdiv").style.visibility="visible";
+    }
+  </script>
+</head>
+<body>
+<div th:object="${session.user}">
+  <p>Welcome <span th:text="*{firstName}"/> <span th:text="*{lastName}"/></p>
+  <p>Your account balance is INR <span th:text="*{balance}"/></p>
+  <p><a href="#" onclick="javascript:startTx()">Transfer Money</a> | <a href="/ledger">See Ledger</a> </p>
+  <div id="txdiv" style="visibility: hidden">
+    <form id="txform" action="#" th:action="@{/dotx}" method="post" th:object="${transferForm}">
+      <label for="email">Receiver's Email:</label> <input id="email" type="email" th:field="*{receiver}" required=""/>
+      <label for="amt">Amount:</label> <input id="amt" type="number" th:field="*{amount}" required="" step="1" min="1"/>
+      <input type="submit"/>
+    </form>
+  </div>
+  <p style="color: red" th:text="${error}"/>
+  <p style="color: green" th:text="${success}"/>
+</div>
+<div>
+  <a href="/logout">Logout</a>
+</div>
+</body>
+</html>

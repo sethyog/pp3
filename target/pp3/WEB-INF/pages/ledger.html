@@ -1,0 +1,29 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Ledger</title>
+</head>
+<body>
+<div id="ledgerdiv" th:object="${ledger}">
+    <table style="border-color: black;border-style: solid;text-align: right">
+        <tr style="background-color: blanchedalmond;border-style: solid">
+            <th>Date</th>
+            <th>Transaction No.</th>
+            <th>Credit</th>
+            <th>Debit</th>
+        </tr>
+        <tr data-th-each="entry : ${ledger}">
+            <td data-th-text="${entry.txTime}"/>
+            <td data-th-text="${entry.id}"/>
+            <td th:if="${entry.userTransactions.get(0).txType==1}" th:text="${entry.amount}"/>
+            <td th:if="${entry.userTransactions.get(0).txType==2}" th:text="${entry.amount}"/>
+        </tr>
+    </table>
+</div>
+<div>
+    <a href="/">Back to dashboard</a>
+</div>
+</body>
+</html>
